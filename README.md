@@ -10,6 +10,5 @@ It is assumed that room of the source is in (0,0,0) to (L_xs, L_ys, L_zs).
 Aמג אhe room of the microphone (receiver) is adjacent to it and is between (L_xs, 0,0) and (L_xs + L_xr, L_yr, L_zr).
 
 ## How to activate
-1. In Matlab, you need to first compile the cpp function into a 'mex' file by using:
->> mex -g StIM_rir_generator.cpp
+1. In Matlab, you need to first compile the cpp function into a 'mex' file by using: "mex -g StIM_rir_generator.cpp"
 2. Run 'test.m' in order to produce the desired RIR.
