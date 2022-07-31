@@ -13,6 +13,9 @@ mtype = 'omnidirectional';
 order = -1;
 dim =3;
 
+r(1) = r(1)+Ls(1);
+s(1) = s(1)+Ls(1);
+
 mh = mexhost;
 h_1 = StIM_rir_generator(c, fs, r, s, Lr, Ls, beta_r, beta_s, n, mtype, order, dim, 1);
 plot(h_1);

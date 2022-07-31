@@ -55,7 +55,7 @@ int box_ray(const double L[],double xv[],const double xf[]){
     // Cross terms
     double cxy = xf[0]*xv[1] - xf[1]*xv[0];
     double cxz = xf[0]*xv[2] - xf[2]*xv[0];
-    double cyz = xf[1]*xv[2] - xf[1]*xv[2];
+    double cyz = xf[1]*xv[2] - xf[2]*xv[1];
 
     // Absolute delta products
     double axy = abs(ndx*ndy);
@@ -433,9 +433,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     if (!(mxGetN(prhs[1])==1) || !mxIsDouble(prhs[1]) || mxIsComplex(prhs[1]))
         mexErrMsgTxt("Invalid input fs arguments!");// fs
     if (!(mxGetN(prhs[2])==3) || !mxIsDouble(prhs[2]) || mxIsComplex(prhs[2]))
-        mexErrMsgTxt("Invalid input s arguments!");// s
-    if (!(mxGetN(prhs[3])==3) || !mxIsDouble(prhs[3]) || mxIsComplex(prhs[3]))
         mexErrMsgTxt("Invalid input r arguments!");// r
+    if (!(mxGetN(prhs[3])==3) || !mxIsDouble(prhs[3]) || mxIsComplex(prhs[3]))
+        mexErrMsgTxt("Invalid input s arguments!");// s
     if (!(mxGetN(prhs[4])==3) || !mxIsDouble(prhs[4]) || mxIsComplex(prhs[4]))
         mexErrMsgTxt("Invalid input Lr arguments!");// Lr
     if (!(mxGetN(prhs[5])==3) || !mxIsDouble(prhs[5]) || mxIsComplex(prhs[5]))
@@ -664,13 +664,13 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
                         for (j = 0 ; j <= 1 ; j++)// y axis
                         {
-                            Rp_plus_Rm[1] = (1-2*j)*r[1] - s[1] + Rm[1];// y axis distance between virtual source and fixed reciver
+                            Rp_plus_Rm[1] = (1-2*j)*s[1] - r[1] + Rm[1];// y axis distance between virtual source and fixed reciver
                             xp[1] = 2*my*LL_s[1] + (1-2*j)*ss[idxMicrophone + 1*nMicrophones];// virtual source y position
                             refl[1] = pow(beta[2], abs(my-j)) * pow(beta[3], abs(my));
 
                             for (k = 0 ; k <= 1 ; k++)// z axis
                             {
-                                Rp_plus_Rm[2] = (1-2*k)*r[2] - s[2] + Rm[2];// z axis distance between virtual source and fixed reciver
+                                Rp_plus_Rm[2] = (1-2*k)*s[2] - r[2] + Rm[2];// z axis distance between virtual source and fixed reciver
                                 xp[2] = 2*mz*LL_s[2] + (1-2*k)*ss[idxMicrophone + 2*nMicrophones];// virtual source z position
                                 refl[2] = pow(beta[4],abs(mz-k)) * pow(beta[5], abs(mz));
                                 
